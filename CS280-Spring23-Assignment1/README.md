@@ -1,8 +1,8 @@
 # Homework1
 
-Name:
+Name: 李炳楠
 
-Student ID:
+Student ID: 2020533092
 
 The Homework1 consists of two parts.
 
