@@ -99,7 +99,7 @@ r_{nk}:=p(z_n=k|\mathbf{x}_n,\theta) = \frac{\pi_k\mathcal{N}(\mathbf{x}_n|\bold
             \PARTIAL{l(\theta)}{\pi_k}
             &=\sum_{n=1}^N \frac{1}{p(\b{x}_n|\theta)}\PARTIAL{p(\b{x}_n|\theta)}{\pi_k}\\
             &=\sum_{n=1}^N \frac{1}{p(\b{x}_n|\theta)}\mathcal{N}(\b{x}_n|\b{\mu}_k,\b{\Sigma}_k)\\
-            &=\sum_{n=1}^n \frac{r_{nk}}{\pi_k}
+            &=\sum_{n=1}^N \frac{r_{nk}}{\pi_k}
         \end{align*}
     \end{proof}
 	\vspace{1em}
