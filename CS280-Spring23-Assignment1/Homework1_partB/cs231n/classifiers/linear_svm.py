@@ -81,7 +81,14 @@ def svm_loss_vectorized(W, X, y, reg):
     #############################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    loss = X @ W
+    correct_scores = loss[np.arange(X.shape[0]), y].reshape(-1, 1)
+    loss = np.maximum(loss - correct_scores + 1, 0)
+    mask = loss > 0
+
+    loss = np.sum(loss) / X.shape[0] - 1
+
+    loss += reg * np.sum(W * W)
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -96,7 +103,11 @@ def svm_loss_vectorized(W, X, y, reg):
     #############################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    dW += X.T @ mask
+    dW -= (np.sum(mask, axis=1, keepdims=True) * X).T @ np.eye(X.shape[0], W.shape[1])[y]
+    dW /= X.shape[0]
+
+    dW += reg * 2 * W
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
