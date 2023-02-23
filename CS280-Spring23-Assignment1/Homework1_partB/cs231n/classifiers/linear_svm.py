@@ -43,6 +43,7 @@ def svm_loss_naive(W, X, y, reg):
     # Right now the loss is a sum over all training examples, but we want it
     # to be an average instead, so we divide by num_train.
     loss /= num_train
+    dW /= num_train
 
     # Add regularization to the loss.
     loss += reg * np.sum(W * W)
@@ -57,8 +58,6 @@ def svm_loss_naive(W, X, y, reg):
     # code above to compute the gradient.                                       #
     #############################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-    dW /= num_train
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -85,9 +84,7 @@ def svm_loss_vectorized(W, X, y, reg):
     correct_scores = loss[np.arange(X.shape[0]), y].reshape(-1, 1)
     loss = np.maximum(loss - correct_scores + 1, 0)
     mask = loss > 0
-
     loss = np.sum(loss) / X.shape[0] - 1
-
     loss += reg * np.sum(W * W)
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
@@ -106,7 +103,6 @@ def svm_loss_vectorized(W, X, y, reg):
     dW += X.T @ mask
     dW -= (np.sum(mask, axis=1, keepdims=True) * X).T @ np.eye(X.shape[0], W.shape[1])[y]
     dW /= X.shape[0]
-
     dW += reg * 2 * W
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
