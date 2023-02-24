@@ -24,3 +24,7 @@ The reason why I choose to tune learning_rate is that learning rate is the plot 
 As for batch_size, increase batch size will help the model to get more accurate gradient during training, so we compare the result of original(200) parameter and new (400) parameter.
 
 I traversed through all possible combinations of hyperparameters and save the model with the highest validation accuracy as the best model.
+
+two_layer_net.2:
+
+Actually this problem is equivalent to how to avoid overfitting because overfitting means the model nearly remembered the whole training set. For 1, the more data the model meet, the less likely that it remember all of them. For 2, the more hidden units the model has, the harder for training and the model is less likely to remember all the dataset. For 3, regularization constrains the L2 norm of weights won't be extremely large which means the model won't approximation the implicit function in an extremely complex way.
