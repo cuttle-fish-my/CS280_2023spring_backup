@@ -16,3 +16,11 @@ then the loss value will not change
 
 However, for softmax, the loss function takes every training points into consideration. Thus the value will change if we add
 a new point $x_i$ into training set.
+
+two_layer_net.1:
+I experimented with different hyperparameters combinations, in detail, I choose two different learning_rates: 5e-4 and 1e-3 and two different batch_size: 200 and 400.
+
+The reason why I choose to tune learning_rate is that learning rate is the plot above shows that the loss fluctuated heavily during the training process, then we can increase the learning rate to by increasing 5e-4 each time.
+As for batch_size, increase batch size will help the model to get more accurate gradient during training, so we compare the result of original(200) parameter and new (400) parameter.
+
+I traversed through all possible combinations of hyperparameters and save the model with the highest validation accuracy as the best model.
