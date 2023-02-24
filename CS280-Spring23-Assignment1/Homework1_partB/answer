@@ -28,3 +28,7 @@ I traversed through all possible combinations of hyperparameters and save the mo
 two_layer_net.2:
 
 Actually this problem is equivalent to how to avoid overfitting because overfitting means the model nearly remembered the whole training set. For 1, the more data the model meet, the less likely that it remember all of them. For 2, the more hidden units the model has, the harder for training and the model is less likely to remember all the dataset. For 3, regularization constrains the L2 norm of weights won't be extremely large which means the model won't approximation the implicit function in an extremely complex way.
+
+features.1:
+
+The misclassified images show features of both their corresponding labels and the labels they are classified into. For example, in the first column, most of the images have the streamline shape which is also an important feature of plane. Moreover, the color of images in "dog" column all have grey style, which is also the color of some typical dogs (e.g. husky and alaskan dog). In conclusion, it's reasonable for the model to misclassify.
