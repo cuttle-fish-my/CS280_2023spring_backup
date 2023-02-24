@@ -1,0 +1,4 @@
+svm.2:
+Those pictures look like the "average" pictures of each class. This is because the angle between $w_k$ and $x_i$ affects
+the value of $w_k^Tx_i$. Thus, the smaller the angle is, the more similar $w_k$ is to $x_i$ and the higher the probability
+that $x_i$ si classified into class $k$.
