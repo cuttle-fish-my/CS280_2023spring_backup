@@ -2,3 +2,8 @@ svm.2:
 Those pictures look like the "average" pictures of each class. This is because the angle between $w_k$ and $x_i$ affects
 the value of $w_k^Tx_i$. Thus, the smaller the angle is, the more similar $w_k$ is to $x_i$ and the higher the probability
 that $x_i$ si classified into class $k$.
+
+softmax.1:
+Since the weight $W$ is randomly initialized, then the probability $p_i$ should be close to $1/#\{\class\}=0.1$ for each class $i$.
+Thus, the value of loss function can be approximated as follows:
+$$L=\frac{1}{n}\sum_{i=1}^n -\log p_i = -\log (\prod_{i=1}^n p_i)^\frac{1}{n} \approx -\log ((0.1)^n)^(1/n) = -log 0.1$$
