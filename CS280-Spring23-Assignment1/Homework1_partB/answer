@@ -7,3 +7,5 @@ softmax.1:
 Since the weight $W$ is randomly initialized, then the probability $p_i$ should be close to $1/#\{\class\}=0.1$ for each class $i$.
 Thus, the value of loss function can be approximated as follows:
 $$L=\frac{1}{n}\sum_{i=1}^n -\log p_i = -\log (\prod_{i=1}^n p_i)^\frac{1}{n} \approx -\log ((0.1)^n)^(1/n) = -log 0.1$$
+
+softmax.2:
