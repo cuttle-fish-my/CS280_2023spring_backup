@@ -419,7 +419,7 @@ In this exercise you will:
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{1}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Run some setup code for this notebook.}
 \PY{k+kn}{import} \PY{n+nn}{random}
@@ -446,7 +446,7 @@ In this exercise you will:
 Preprocessing}\label{cifar-10-data-loading-and-preprocessing}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Load the raw CIFAR\PYZhy{}10 data.}
 \PY{n}{cifar10\PYZus{}dir} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cs231n/datasets/cifar\PYZhy{}10\PYZhy{}batches\PYZhy{}py}\PY{l+s+s1}{\PYZsq{}}
@@ -477,7 +477,7 @@ Test labels shape:  (10000,)
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Visualize some examples from the dataset.}
 \PY{c+c1}{\PYZsh{} We show a few examples of training images from each class.}
@@ -504,7 +504,7 @@ Test labels shape:  (10000,)
     { \hspace*{\fill} \\}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Split the data into train, val, and test sets. In addition we will}
 \PY{c+c1}{\PYZsh{} create a small development set as a subset of the training data;}
@@ -557,7 +557,7 @@ Test labels shape:  (1000,)
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Preprocessing: reshape the image data into rows}
 \PY{n}{X\PYZus{}train} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{p}{(}\PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
@@ -581,7 +581,7 @@ dev data shape:  (500, 3072)
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Preprocessing: subtract the mean image}
 \PY{c+c1}{\PYZsh{} first: compute the image mean based on the training data}
@@ -632,7 +632,7 @@ As you can see, we have prefilled the function \texttt{svm\_loss\_naive}
 which uses for loops to evaluate the multiclass SVM loss function.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Evaluate the naive implementation of the loss we provided for you:}
 \PY{k+kn}{from} \PY{n+nn}{cs231n}\PY{n+nn}{.}\PY{n+nn}{classifiers}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}svm} \PY{k+kn}{import} \PY{n}{svm\PYZus{}loss\PYZus{}naive}
@@ -647,7 +647,7 @@ which uses for loops to evaluate the multiclass SVM loss function.
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-loss: 8.819108
+loss: 9.318401
     \end{Verbatim}
 
     The \texttt{grad} returned from the function above is right now all
@@ -662,7 +662,7 @@ the numeric estimate to the gradient that you computed. We have provided
 code that does this for you:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Once you\PYZsq{}ve implemented the gradient, recompute it with the code below}
 \PY{c+c1}{\PYZsh{} and gradient check it with the function we provided for you}
@@ -686,26 +686,26 @@ code that does this for you:
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-numerical: -3.735900 analytic: -3.735900, relative error: 5.556245e-11
-numerical: 24.951147 analytic: 24.951147, relative error: 7.768410e-12
-numerical: 35.782132 analytic: 35.782132, relative error: 1.492984e-12
-numerical: -3.677670 analytic: -3.677670, relative error: 8.551333e-11
-numerical: -7.658101 analytic: -7.658101, relative error: 3.576280e-11
-numerical: -10.424697 analytic: -10.424697, relative error: 1.701058e-11
-numerical: -51.779575 analytic: -51.779575, relative error: 7.049498e-12
-numerical: -3.497456 analytic: -3.497456, relative error: 6.172994e-11
-numerical: 2.424119 analytic: 2.424119, relative error: 2.112260e-10
-numerical: -36.217647 analytic: -36.217647, relative error: 1.425886e-12
-numerical: -15.355864 analytic: -15.355864, relative error: 2.438053e-11
-numerical: 32.423958 analytic: 32.423958, relative error: 3.211515e-13
-numerical: -45.592398 analytic: -45.592398, relative error: 1.115551e-12
-numerical: 6.284818 analytic: 6.284818, relative error: 5.657302e-11
-numerical: -8.972438 analytic: -8.972438, relative error: 2.407923e-11
-numerical: -23.441549 analytic: -23.436703, relative error: 1.033658e-04
-numerical: 19.696898 analytic: 19.696898, relative error: 1.815596e-12
-numerical: 10.890563 analytic: 10.890563, relative error: 8.684859e-12
-numerical: 4.603972 analytic: 4.603972, relative error: 3.167290e-11
-numerical: -0.129161 analytic: -0.129161, relative error: 2.715102e-10
+numerical: 4.066394 analytic: 4.129151, relative error: 7.657412e-03
+numerical: -5.600240 analytic: -5.600240, relative error: 7.350527e-11
+numerical: 4.651978 analytic: 4.651978, relative error: 8.995426e-13
+numerical: -22.334557 analytic: -22.334557, relative error: 1.318483e-11
+numerical: -3.009755 analytic: -3.009755, relative error: 1.557965e-10
+numerical: -11.344121 analytic: -11.344121, relative error: 4.304613e-13
+numerical: 3.158882 analytic: 3.204693, relative error: 7.198895e-03
+numerical: -18.502906 analytic: -18.382096, relative error: 3.275296e-03
+numerical: -6.049070 analytic: -6.049070, relative error: 7.427929e-12
+numerical: 30.572300 analytic: 30.572300, relative error: 7.611381e-12
+numerical: -6.443605 analytic: -6.548512, relative error: 8.074646e-03
+numerical: -3.362234 analytic: -3.294436, relative error: 1.018498e-02
+numerical: -1.974795 analytic: -1.974795, relative error: 2.956606e-10
+numerical: -42.768838 analytic: -42.768838, relative error: 2.457229e-12
+numerical: 2.931244 analytic: 2.931244, relative error: 4.977740e-11
+numerical: 1.526142 analytic: 1.601676, relative error: 2.414897e-02
+numerical: -2.584603 analytic: -2.584603, relative error: 9.321052e-11
+numerical: -12.417974 analytic: -12.417974, relative error: 2.307688e-11
+numerical: -22.304136 analytic: -22.232664, relative error: 1.604777e-03
+numerical: 25.988804 analytic: 25.988804, relative error: 1.067483e-11
     \end{Verbatim}
 
     \textbf{Inline Question 1}
@@ -734,7 +734,7 @@ the true gradient is \(0\).
 The way to reduce the effect is to reduce the interval length \(h\).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Next implement the function svm\PYZus{}loss\PYZus{}vectorized; for now only compute the loss;}
 \PY{c+c1}{\PYZsh{} we will implement the gradient in a moment.}
@@ -755,13 +755,13 @@ The way to reduce the effect is to reduce the interval length \(h\).
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Naive loss: 8.819108e+00 computed in 0.044319s
-Vectorized loss: 8.819108e+00 computed in 0.008104s
-difference: 0.000000
+Naive loss: 9.318401e+00 computed in 0.045376s
+Vectorized loss: 9.318401e+00 computed in 0.008753s
+difference: -0.000000
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Complete the implementation of svm\PYZus{}loss\PYZus{}vectorized, and compute the gradient}
 \PY{c+c1}{\PYZsh{} of the loss function in a vectorized way.}
@@ -787,8 +787,8 @@ difference: 0.000000
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Naive loss and gradient: computed in 0.059319s
-Vectorized loss and gradient: computed in 0.009089s
+Naive loss and gradient: computed in 0.075716s
+Vectorized loss and gradient: computed in 0.009150s
 difference: 0.000000
     \end{Verbatim}
 
@@ -803,7 +803,7 @@ will be written inside
 \texttt{cs231n/classifiers/linear\_classifier.py}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
+\prompt{In}{incolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} In the file linear\PYZus{}classifier.py, implement SGD in the function}
 \PY{c+c1}{\PYZsh{} LinearClassifier.train() and then run it with the code below.}
@@ -818,26 +818,26 @@ will be written inside
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-iteration 0 / 1500: loss 787.759348
-iteration 100 / 1500: loss 288.433866
-iteration 200 / 1500: loss 108.361920
-iteration 300 / 1500: loss 42.307327
-iteration 400 / 1500: loss 19.240937
-iteration 500 / 1500: loss 10.047169
-iteration 600 / 1500: loss 7.789041
-iteration 700 / 1500: loss 6.258600
-iteration 800 / 1500: loss 5.857393
-iteration 900 / 1500: loss 5.487107
-iteration 1000 / 1500: loss 5.769576
-iteration 1100 / 1500: loss 5.427533
-iteration 1200 / 1500: loss 5.349334
-iteration 1300 / 1500: loss 5.054104
-iteration 1400 / 1500: loss 5.364794
-That took 6.351572s
+iteration 0 / 1500: loss 791.981194
+iteration 100 / 1500: loss 289.379744
+iteration 200 / 1500: loss 108.449161
+iteration 300 / 1500: loss 42.430152
+iteration 400 / 1500: loss 18.899496
+iteration 500 / 1500: loss 10.146439
+iteration 600 / 1500: loss 7.472539
+iteration 700 / 1500: loss 5.959729
+iteration 800 / 1500: loss 5.459304
+iteration 900 / 1500: loss 5.492587
+iteration 1000 / 1500: loss 5.032883
+iteration 1100 / 1500: loss 5.570110
+iteration 1200 / 1500: loss 5.641019
+iteration 1300 / 1500: loss 5.025879
+iteration 1400 / 1500: loss 5.251474
+That took 7.209703s
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} A useful debugging strategy is to plot the loss as a function of}
 \PY{c+c1}{\PYZsh{} iteration number:}
@@ -854,7 +854,7 @@ That took 6.351572s
     { \hspace*{\fill} \\}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Write the LinearSVM.predict function and evaluate the performance on both the}
 \PY{c+c1}{\PYZsh{} training and validation set}
@@ -866,12 +866,12 @@ That took 6.351572s
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-training accuracy: 0.363184
-validation accuracy: 0.375000
+training accuracy: 0.369653
+validation accuracy: 0.386000
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{18}{\boxspacing}
+\prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Use the validation set to tune hyperparameters (regularization strength and}
 \PY{c+c1}{\PYZsh{} learning rate). You should experiment with different ranges for the learning}
@@ -913,7 +913,7 @@ validation accuracy: 0.375000
 \PY{k}{for} \PY{n}{lr} \PY{o+ow}{in} \PY{n}{learning\PYZus{}rates}\PY{p}{:}
     \PY{k}{for} \PY{n}{r} \PY{o+ow}{in} \PY{n}{regularization\PYZus{}strengths}\PY{p}{:}
         \PY{n}{svm} \PY{o}{=} \PY{n}{LinearSVM}\PY{p}{(}\PY{p}{)}
-        \PY{n}{svm}\PY{o}{.}\PY{n}{train}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{learning\PYZus{}rate}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}7}\PY{p}{,} \PY{n}{reg}\PY{o}{=}\PY{l+m+mf}{2.5e4}\PY{p}{,} \PY{n}{num\PYZus{}iters}\PY{o}{=}\PY{l+m+mi}{1500}\PY{p}{)}
+        \PY{n}{svm}\PY{o}{.}\PY{n}{train}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{learning\PYZus{}rate}\PY{o}{=}\PY{n}{lr}\PY{p}{,} \PY{n}{reg}\PY{o}{=}\PY{n}{r}\PY{p}{,} \PY{n}{num\PYZus{}iters}\PY{o}{=}\PY{l+m+mi}{1500}\PY{p}{)}
         \PY{n}{y\PYZus{}train\PYZus{}pred} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
         \PY{n}{y\PYZus{}val\PYZus{}pred} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}val}\PY{p}{)}
         \PY{n}{train\PYZus{}accuracy} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{y\PYZus{}train\PYZus{}pred} \PY{o}{==} \PY{n}{y\PYZus{}train}\PY{p}{)}
@@ -935,15 +935,40 @@ validation accuracy: 0.375000
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-lr 1.000000e-07 reg 2.500000e+04 train accuracy: 0.367510 val accuracy: 0.383000
-lr 1.000000e-07 reg 5.000000e+04 train accuracy: 0.370939 val accuracy: 0.370000
-lr 5.000000e-05 reg 2.500000e+04 train accuracy: 0.367286 val accuracy: 0.378000
-lr 5.000000e-05 reg 5.000000e+04 train accuracy: 0.370327 val accuracy: 0.392000
-best validation accuracy achieved during cross-validation: 0.392000
+/Users/caleblee/Desktop/CS280/CS280-Spring23-Assignment1/Homework1\_partB/cs231n/
+classifiers/linear\_svm.py:88: RuntimeWarning: overflow encountered in scalar
+multiply
+  loss += reg * np.sum(W * W)
+/Users/caleblee/Library/Python/3.9/lib/python/site-
+packages/numpy/core/fromnumeric.py:86: RuntimeWarning: overflow encountered in
+reduce
+  return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+/Users/caleblee/Desktop/CS280/CS280-Spring23-Assignment1/Homework1\_partB/cs231n/
+classifiers/linear\_svm.py:88: RuntimeWarning: overflow encountered in multiply
+  loss += reg * np.sum(W * W)
+/Users/caleblee/Desktop/CS280/CS280-Spring23-Assignment1/Homework1\_partB/cs231n/
+classifiers/linear\_svm.py:106: RuntimeWarning: overflow encountered in multiply
+  dW += reg * 2 * W
+/Users/caleblee/Desktop/CS280/CS280-Spring23-Assignment1/Homework1\_partB/cs231n/
+classifiers/linear\_svm.py:83: RuntimeWarning: invalid value encountered in
+matmul
+  loss = X @ W
+/Users/caleblee/Desktop/CS280/CS280-Spring23-Assignment1/Homework1\_partB/cs231n/
+classifiers/linear\_classifier.py:77: RuntimeWarning: invalid value encountered
+in subtract
+  self.W -= learning\_rate * grad
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+lr 1.000000e-07 reg 2.500000e+04 train accuracy: 0.366571 val accuracy: 0.375000
+lr 1.000000e-07 reg 5.000000e+04 train accuracy: 0.358327 val accuracy: 0.371000
+lr 5.000000e-05 reg 2.500000e+04 train accuracy: 0.043796 val accuracy: 0.049000
+lr 5.000000e-05 reg 5.000000e+04 train accuracy: 0.100265 val accuracy: 0.087000
+best validation accuracy achieved during cross-validation: 0.375000
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{19}{\boxspacing}
+\prompt{In}{incolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Visualize the cross\PYZhy{}validation results}
 \PY{k+kn}{import} \PY{n+nn}{math}
@@ -983,7 +1008,7 @@ best validation accuracy achieved during cross-validation: 0.392000
     { \hspace*{\fill} \\}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{20}{\boxspacing}
+\prompt{In}{incolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Evaluate the best svm on test set}
 \PY{n}{y\PYZus{}test\PYZus{}pred} \PY{o}{=} \PY{n}{best\PYZus{}svm}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
@@ -993,11 +1018,11 @@ best validation accuracy achieved during cross-validation: 0.392000
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-linear SVM on raw pixels final test set accuracy: 0.381000
+linear SVM on raw pixels final test set accuracy: 0.369000
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{21}{\boxspacing}
+\prompt{In}{incolor}{18}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Visualize the learned weights for each class.}
 \PY{c+c1}{\PYZsh{} Depending on your choice of learning rate and regularization strength, these may}
@@ -1036,7 +1061,7 @@ is to \(x_i\) and the higher the probability that \(x_i\) si classified
 into class \(k\).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
+\prompt{In}{incolor}{18}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 
 \end{Verbatim}
