@@ -11,6 +11,7 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{pdfpages}
+\usepackage{pythonhighlight}
 \setcounter{MaxMatrixCols}{30}
 \newtheorem{theorem}{Theorem}
 \newtheorem{acknowledgement}[theorem]{Acknowledgement}
@@ -146,9 +147,21 @@ size and $D$ is the number of dimensions. Each row gives one input vector
 $z = (z_1, \dots , z_D)$.
     \item A matrix $\mathbf{Y_{bar}}$ giving the output error signals. It is also $N \times D$
 \end{itemize} 
-\indent The output should be the error signal $\mathbf{Z_{bar}}$. Do not use a for loop.
-\includepdf[pages=1-30]{perceptron.pdf} 
-\includepdf[pages=1-12]{knn.pdf}
+\indent The output should be the error signal $\mathbf{Z_{bar}}$. Do not use a for loop.\\
+{\bf Solution:}
+
+
+\begin{python}
+def VJP(Z, Y_bar):
+    exp_Z = np.exp(Z)
+    R = np.sum(exp_Z, axis=1)
+    R_bar = -np.sum(Y_bar * exp_Z / (R ** 2)[:, None], axis=1)
+    Z_bar = Y_bar * exp_Z / R[:, None] + R_bar[:, None] * exp_Z
+    return Z_bar
+\end{python}
+
+\includepdf[pages=1-]{perceptron.pdf} 
+\includepdf[pages=1-]{knn.pdf}
 \includepdf[pages=1-]{svm.pdf}
 \includepdf[pages=1-]{softmax.pdf}
 \includepdf[pages=1-]{two_layer_net.pdf}
