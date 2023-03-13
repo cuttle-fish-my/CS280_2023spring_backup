@@ -3,3 +3,5 @@
 *.out
 *.synctex.gz
 .DS_Store
+.idea
+Cifar-10*
