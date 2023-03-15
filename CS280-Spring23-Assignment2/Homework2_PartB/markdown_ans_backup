@@ -1,0 +1,11 @@
+FullyConnectedNets:
+
+1.
+    Sigmoid and ReLU have this problem. For 1-D case, sigmoid function has the following formula:
+    $$\delta(x)=\frac{1}{1+e^{-x}}$$
+    and its derivative is
+    $$\frac{d\delta}{d x} = \frac{e^{-x}}{(1+e^{-x})^2}$$
+    The gradient of sigmoid goes to zeros when $|x|$ goes to infinity, which is
+    $$\lim_{|x|\to \infty}\frac{e^{-x}}{(1+e^{-x})^2} = 0 $$
+
+    As for ReLU, any input $x$ such that $x<0$ leads to zero gradient since for any $x<0$, ReLU($x$) = 0.

@@ -12,7 +12,7 @@ class TwoLayerNet(object):
     softmax loss that uses a modular layer design. We assume an input dimension
     of D, a hidden dimension of H, and perform classification over C classes.
 
-    The architecure should be affine - relu - affine - softmax.
+    The architecture should be affine - relu - affine - softmax.
 
     Note that this class does not implement gradient descent; instead, it
     will interact with a separate Solver object that is responsible for running
@@ -23,12 +23,12 @@ class TwoLayerNet(object):
     """
 
     def __init__(
-        self,
-        input_dim=3 * 32 * 32,
-        hidden_dim=100,
-        num_classes=10,
-        weight_scale=1e-3,
-        reg=0.0,
+            self,
+            input_dim=3 * 32 * 32,
+            hidden_dim=100,
+            num_classes=10,
+            weight_scale=1e-3,
+            reg=0.0,
     ):
         """
         Initialize a new network.
@@ -55,7 +55,10 @@ class TwoLayerNet(object):
         ############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+        self.params['W1'] = np.random.normal(loc=0, scale=weight_scale, size=[input_dim, hidden_dim])
+        self.params['b1'] = np.zeros([hidden_dim, ])
+        self.params['W2'] = np.random.normal(loc=0, scale=weight_scale, size=[hidden_dim, num_classes])
+        self.params['b2'] = np.zeros([num_classes, ])
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ############################################################################
@@ -88,7 +91,8 @@ class TwoLayerNet(object):
         ############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+        scores, cache_1 = affine_relu_forward(X, self.params['W1'], self.params['b1'])
+        scores, cache_2 = affine_forward(scores, self.params['W2'], self.params['b2'])
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ############################################################################
@@ -112,7 +116,12 @@ class TwoLayerNet(object):
         ############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+        loss, dout = softmax_loss(scores, y)
+        loss += 0.5 * self.reg * ((self.params['W1'] ** 2).sum() + (self.params['W2'] ** 2).sum())
+        dout, grads['W2'], grads['b2'] = affine_backward(dout, cache_2)
+        dout, grads['W1'], grads['b1'] = affine_relu_backward(dout, cache_1)
+        grads['W2'] += self.reg * self.params['W2']
+        grads['W1'] += self.reg * self.params['W1']
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ############################################################################
@@ -139,16 +148,16 @@ class FullyConnectedNet(object):
     """
 
     def __init__(
-        self,
-        hidden_dims,
-        input_dim=3 * 32 * 32,
-        num_classes=10,
-        dropout=1,
-        normalization=None,
-        reg=0.0,
-        weight_scale=1e-2,
-        dtype=np.float32,
-        seed=None,
+            self,
+            hidden_dims,
+            input_dim=3 * 32 * 32,
+            num_classes=10,
+            dropout=1,
+            normalization=None,
+            reg=0.0,
+            weight_scale=1e-2,
+            dtype=np.float32,
+            seed=None,
     ):
         """
         Initialize a new FullyConnectedNet.
