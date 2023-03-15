@@ -69,7 +69,14 @@
         Then for each element in output, it is calculated by $c_i\times k_h\times k_w$ times multiplications and $c_i\times k_h\times k_w - 1$ times additions.
         Thus, the computational cost is
         \[cost = c_0\left\lfloor\frac{h+2p_h-k_h}{s_h}+1\right\rfloor\left\lfloor\frac{w+2p_w-k_w}{s_w}+1\right\rfloor\left(2c_i k_h k_w-1\right)\]
-        \item What is the memory footprint?
+        \item What is the memory footprint?\\
+        {\bf Solution:}
+        \par Based on the previous analysis, we know the output size is
+        \[\left(c_0,\left\lfloor\frac{h+2p_h-k_h}{s_h}+1\right\rfloor,\left\lfloor\frac{w+2p_w-k_w}{s_w}+1\right\rfloor\right)\]
+        So the memory footprint of output is
+        \[c_0\left\lfloor\frac{h+2p_h-k_h}{s_h}+1\right\rfloor\left\lfloor\frac{w+2p_w-k_w}{s_w}+1\right\rfloor\]
+        and the total memory footprint including input and kernels is
+        \[c_0\left\lfloor\frac{h+2p_h-k_h}{s_h}+1\right\rfloor\left\lfloor\frac{w+2p_w-k_w}{s_w}+1\right\rfloor + c_i h w+c_0 c_i k_h k_w\]
     \end{itemize}
 
     \newpage
