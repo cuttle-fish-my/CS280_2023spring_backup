@@ -79,10 +79,41 @@
     Assume there are two convolution kernels of size
     $k_1$ and $k_2$ respectively (with no nonlinear activation function in-between).
     \begin{itemize}
-        \item Prove that the results of the two convolution operations can be expressed by a single convolution operation.
-        \item What is the dimensionality of the equivalent single convolution?
+        \item Prove that the results of the two convolution operations can be expressed by a single convolution operation.\\
+        {\bf Proof:}
+        \par Define the input as $X$ and $Y,Z$ are the output of the first and the second convolution layer, where
+        \begin{align*}
+            Y = conv_1(X)\\
+            Z = conv_2(Y)
+        \end{align*}
+        Then define $A(x,y)$ as the element at position $(x,y)$ of $A$.
+        By the definition of convolution operation, we have
+        \begin{align*}
+            Z(i,j) &= \sum_{p=0}^{k_2-1}\sum_{q=0}^{k_2-1}kernel_2(p,q)Y(i+p,j+q)\\
+            Y(i+p,j+q) &= \sum_{m=0}^{k_1-1}\sum_{n=0}^{k_1-1}kernel_1(m,n)X(i+p+m,j+q+n)
+        \end{align*}
+        Substitute $Y(i+p,j+q)$ into $Z(i,j)$ and we get:
+        \begin{align*}
+            Z(i,j) &= \sum_{p=0}^{k_2-1}\sum_{q=0}^{k_2-1}kernel_2(p,q)\sum_{m=0}^{k_1-1}\sum_{n=0}^{k_1-1}kernel_1(m,n)X(i+p+m,j+q+n)\\
+            &= \sum_{p=0}^{k_2-1}\sum_{q=0}^{k_2-1}\sum_{m=0}^{k_1-1}\sum_{n=0}^{k_1-1}kernel_2(p,q)kernel_1(m,n)X(i+p+m,j+q+n)\\
+            &= \sum_{a=0}^{k_3-1}\sum_{b=0}^{k_3-1}kernel_3(a,b)X(i+a,j+b)
+        \end{align*}
+        where $k_3 = k_2+k_1-1$ and
+        \begin{align*}
+            kernel_3(a, b) &= \sum_{x=\max(0,a-k_1+1)}^{\min(a,k_2-1)}\sum_{x=\max(0,b-k_1+1)}^{\min(b,k_2-1)}kernel_2(x,y)\cdot kernel_1(a-x,b-y)\\
+            &= kernel_2 * kernel_1
+        \end{align*}
+        {\bf Remark:} $kernel_3$ is the "real" convolution result between $kernel_1$ and $kernel_2$.
+        It's different from the image convolution operation described in the question, which is actually correlation operation.
+        \par Since $Z(i,j) = \sum_{a=0}^{k_3-1}\sum_{b=0}^{k_3-1}kernel_3(a,b)X(i+a,j+b)$, $Z(i,j)$ can be computed from single convolution.
+        \item What is the dimensionality of the equivalent single convolution?\\
+        {\bf Solution:}
+        \par Based on the previous proof, we know $Z(i,j) = \sum_{a=0}^{k_3-1}\sum_{b=0}^{k_3-1}kernel_3(a,b)X(i+a,j+b)$ where $k_3=k_1+k_2-1$,
+        we know that the kernel size of equivalent single convolution is $(k_1+k_2-1)\times (k_1+k_2-1)$.
         \item Is the converse true, i.e.,
-        Can a convolution operation be decomposed into two smaller convolution operations?
+        Can a convolution operation be decomposed into two smaller convolution operations?\\
+        {\bf Solution:}
+        \par The converse is false,
     \end{itemize}
 
 
