@@ -9,3 +9,12 @@ FullyConnectedNets:
     $$\lim_{|x|\to \infty}\frac{e^{-x}}{(1+e^{-x})^2} = 0 $$
 
     As for ReLU, any input $x$ such that $x<0$ leads to zero gradient since for any $x<0$, ReLU($x$) = 0.
+
+2.
+    The five-layer network was more sensitive to the initialization scale. This is because the more parameters there are
+    in the network, the more non-convex the loss function becomes. This means that there are more local minima and maxima
+    in the loss function, and the gradient can be very sensitive to the initialization scale.
+
+3.
+    The reason why AdaGrad tend to make updates small is that the cache is always increasing. Adam does not have this issue,
+    because it uses an exponential moving average of the gradient, which will control the cache in a proper interval.
