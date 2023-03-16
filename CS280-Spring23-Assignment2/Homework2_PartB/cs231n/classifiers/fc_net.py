@@ -318,11 +318,14 @@ class FullyConnectedNet(object):
         for i in range(self.num_layers - 1, 0, -1):
             if self.use_dropout:
                 dout = dropout_backward(dout, caches[f"dropout{i}"])
+
             dout = relu_backward(dout, caches[f"relu{i}"])
+
             if self.normalization == "batchnorm":
                 dout, _ = batchnorm_backward(dout, caches[f"norm{i}"])
             elif self.normalization == "layernorm":
                 dout, _ = layernorm_backward(dout, caches[f"norm{i}"])
+
             dout, grads[f"W{i}"], grads[f"b{i}"] = affine_backward(dout, caches[f"fc{i}"])
             loss += 0.5 * self.reg * (self.params[f"W{i}"] ** 2).sum()
             grads[f"W{i}"] += self.reg * self.params[f"W{i}"]
