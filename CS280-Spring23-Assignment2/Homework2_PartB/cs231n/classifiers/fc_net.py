@@ -211,6 +211,11 @@ class FullyConnectedNet(object):
         self.params[f"W{i + 2}"] = np.random.normal(loc=0, scale=weight_scale, size=[out_dim, num_classes])
         self.params[f"b{i + 2}"] = np.zeros([num_classes, ], dtype=dtype)
 
+        if self.normalization is not None:
+            for i in range(self.num_layers - 1):
+                self.params[f"gamma{i + 1}"] = np.ones([hidden_dims[i], ], dtype=dtype)
+                self.params[f"beta{i + 1}"] = np.zeros([hidden_dims[i], ], dtype=dtype)
+
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         ############################################################################
         #                             END OF YOUR CODE                             #
@@ -219,6 +224,7 @@ class FullyConnectedNet(object):
         # When using dropout we need to pass a dropout_param dictionary to each
         # dropout layer so that the layer knows the dropout probability and the mode
         # (train / test). You can pass the same dropout_param to each dropout layer.
+
         self.dropout_param = {}
         if self.use_dropout:
             self.dropout_param = {"mode": "train", "p": dropout}
@@ -276,9 +282,11 @@ class FullyConnectedNet(object):
         for i in range(self.num_layers - 1):
             scores, caches[f'fc{i + 1}'] = affine_forward(scores, self.params[f"W{i + 1}"], self.params[f"b{i + 1}"])
             if self.normalization == "batchnorm":
-                scores, caches[f'norm{i + 1}'] = batchnorm_forward(scores, **self.bn_params[i])
+                scores, caches[f'norm{i + 1}'] = batchnorm_forward(scores, self.params[f'gamma{i + 1}'],
+                                                                   self.params[f'beta{i + 1}'], self.bn_params[i])
             elif self.normalization == "layernorm":
-                scores, caches[f'norm{i + 1}'] = layernorm_forward(scores, **self.bn_params[i])
+                scores, caches[f'norm{i + 1}'] = layernorm_forward(scores, self.params[f'gamma{i + 1}'],
+                                                                   self.params[f'beta{i + 1}'], self.bn_params[i])
             scores, caches[f'relu{i + 1}'] = relu_forward(scores)
             if self.use_dropout:
                 scores, caches[f'dropout{i + 1}'] = dropout_forward(scores, self.dropout_param)
@@ -322,9 +330,9 @@ class FullyConnectedNet(object):
             dout = relu_backward(dout, caches[f"relu{i}"])
 
             if self.normalization == "batchnorm":
-                dout, _ = batchnorm_backward(dout, caches[f"norm{i}"])
+                dout, grads[f"gamma{i}"], grads[f"beta{i}"] = batchnorm_backward_alt(dout, caches[f"norm{i}"])
             elif self.normalization == "layernorm":
-                dout, _ = layernorm_backward(dout, caches[f"norm{i}"])
+                dout, dgamma, dbeta = layernorm_backward(dout, caches[f"norm{i}"])
 
             dout, grads[f"W{i}"], grads[f"b{i}"] = affine_backward(dout, caches[f"fc{i}"])
             loss += 0.5 * self.reg * (self.params[f"W{i}"] ** 2).sum()
