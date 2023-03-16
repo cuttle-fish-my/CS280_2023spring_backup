@@ -18,3 +18,11 @@ FullyConnectedNets:
 3.
     The reason why AdaGrad tend to make updates small is that the cache is always increasing. Adam does not have this issue,
     because it uses an exponential moving average of the gradient, which will control the cache in a proper interval.
+
+BatchNormalization:
+
+1.
+    The results show that batchnorm helps the model to converge faster with higher accuracy and the effect of weight
+    initialization is less significant for the model with batchnorm.
+    This is because batch normalization has two learnable parameter $gamma$ and $beta$ to scale and shift the normalized
+    data, which can be used to compensate the effect of weight initialization.
