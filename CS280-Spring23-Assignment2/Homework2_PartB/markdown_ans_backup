@@ -26,3 +26,7 @@ BatchNormalization:
     initialization is less significant for the model with batchnorm.
     This is because batch normalization has two learnable parameter $gamma$ and $beta$ to scale and shift the normalized
     data, which can be used to compensate the effect of weight initialization.
+2.
+    The results show that increasing batch size boosts the training accuracy and validation accuracy for the model with
+    batchnorm. This is because the larger the batch size is, the more accuarate the mean and variance of the batch are.
+    The batch normalization layer can then normalize the data more accurately.
