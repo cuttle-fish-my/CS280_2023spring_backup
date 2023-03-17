@@ -43,3 +43,17 @@ BatchNormalization:
     true mean and variance of the whole data.
     For option 3, when the regularization term is high, it constrains the weights of the network, which makes the
     network less flexible. In this case, the learnable parameters gamma and beta are highly limited.
+
+Dropout:
+
+1.
+    If we do not divide the values being passed through inverse dropout by $p$ in the dropout layer, the output range
+    when training and testing will not match. This is because if we do not divide $p$, the expected value of the neuron
+    is $px$. However, when testing, the expected value of the neuron is $x$. This means that the test values will be
+    much larger than the training values.
+2.
+    The training accuracies without dropout is much higher than that with dropout, but the validation accuracies
+    indicates the inverse. The results show that model with dropout prevents overfitting and dropout serves as a regularizer.
+3.
+    We should to increase $p$ to slightly compensate the loss of neurons such that it helps to prevent overfitting and
+    meanwhile prevent underfitting.
