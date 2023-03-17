@@ -30,3 +30,16 @@ BatchNormalization:
     The results show that increasing batch size boosts the training accuracy and validation accuracy for the model with
     batchnorm. This is because the larger the batch size is, the more accuarate the mean and variance of the batch are.
     The batch normalization layer can then normalize the data more accurately.
+3.
+    Option 2 is analogous to layer normalization because it can be seen as a special case of layer normalization when
+    gamma = 1 and beta = $\frac{1}{N}$ where $N$ is the number of pixels in one image. At this point, the sum of RGB
+    values for all pixels within an image is $\sum (\gamma \hat{x} + \beta) = \sum \hat{x} + \sum \frac{1}{N} = 0 + 1 = 1$.
+
+    Option 3 is analogous to batch normalization because the mean image is shared across all images in the dataset.
+    This is similar to the mean of a batch.
+4.
+    Under option 2 and 3, layer normalization is likely to not work well.
+    For option 2, when the dimension of features become very small, then the layer mean and variance will not follow the
+    true mean and variance of the whole data.
+    For option 3, when the regularization term is high, it constrains the weights of the network, which makes the
+    network less flexible. In this case, the learnable parameters gamma and beta are highly limited.

@@ -332,7 +332,7 @@ class FullyConnectedNet(object):
             if self.normalization == "batchnorm":
                 dout, grads[f"gamma{i}"], grads[f"beta{i}"] = batchnorm_backward_alt(dout, caches[f"norm{i}"])
             elif self.normalization == "layernorm":
-                dout, dgamma, dbeta = layernorm_backward(dout, caches[f"norm{i}"])
+                dout, grads[f"gamma{i}"], grads[f"beta{i}"] = layernorm_backward(dout, caches[f"norm{i}"])
 
             dout, grads[f"W{i}"], grads[f"b{i}"] = affine_backward(dout, caches[f"fc{i}"])
             loss += 0.5 * self.reg * (self.params[f"W{i}"] ** 2).sum()
