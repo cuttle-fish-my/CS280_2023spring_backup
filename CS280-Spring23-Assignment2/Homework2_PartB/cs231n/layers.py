@@ -545,7 +545,21 @@ def conv_forward_naive(x, w, b, conv_param):
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    N, C, H, W = x.shape
+    F, C, HH, WW = w.shape
+    stride = conv_param['stride']
+    pad = conv_param['pad']
+    H_out = 1 + (H + 2 * pad - HH) // stride
+    W_out = 1 + (W + 2 * pad - WW) // stride
+    out = np.zeros((N, F, H_out, W_out))
+    x_pad = np.pad(x, ((0, 0), (0, 0), (pad, pad), (pad, pad)), 'constant')
+    for n in range(N):
+        for f in range(F):
+            for hout in range(H_out):
+                for wout in range(W_out):
+                    out[n, f, hout, wout] = np.sum(
+                        x_pad[n, :, hout * stride:hout * stride + HH, wout * stride:wout * stride + WW] * w[f, ...]) + \
+                                            b[f]
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ###########################################################################
@@ -574,7 +588,27 @@ def conv_backward_naive(dout, cache):
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    x, w, b, conv_param = cache
+    N, C, H, W = x.shape
+    F, C, HH, WW = w.shape
+    stride = conv_param['stride']
+    pad = conv_param['pad']
+    H_out = 1 + (H + 2 * pad - HH) // stride
+    W_out = 1 + (W + 2 * pad - WW) // stride
+    x_pad = np.pad(x, ((0, 0), (0, 0), (pad, pad), (pad, pad)), 'constant')
+    dx_pad = np.zeros_like(x_pad)
+    dw = np.zeros_like(w)
+    db = np.zeros_like(b)
+    for n in range(N):
+        for f in range(F):
+            for hout in range(H_out):
+                for wout in range(W_out):
+                    dw[f, ...] += dout[n, f, hout, wout] \
+                                  * x_pad[n, :, hout * stride:hout * stride + HH, wout * stride:wout * stride + WW]
+                    dx_pad[n, :, hout * stride:hout * stride + HH, wout * stride:wout * stride + WW] += \
+                        dout[n, f, hout, wout] * w[f, ...]
+                    db[f] += dout[n, f, hout, wout]
+    dx = dx_pad[:, :, pad: pad + H, pad: pad + W]
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ###########################################################################
@@ -608,7 +642,19 @@ def max_pool_forward_naive(x, pool_param):
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    N, C, H, W = x.shape
+    pool_height = pool_param['pool_height']
+    pool_width = pool_param['pool_width']
+    stride = pool_param['stride']
+    H_out = 1 + (H - pool_height) // stride
+    W_out = 1 + (W - pool_width) // stride
+    out = np.zeros((N, C, H_out, W_out))
+    for n in range(N):
+        for c in range(C):
+            for hout in range(H_out):
+                for wout in range(W_out):
+                    out[n, c, hout, wout] = np.max(
+                        x[n, c, hout * stride:hout * stride + pool_height, wout * stride:wout * stride + pool_width])
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ###########################################################################
@@ -635,7 +681,21 @@ def max_pool_backward_naive(dout, cache):
     ###########################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    pass
+    x, pool_param = cache
+    N, C, H, W = x.shape
+    ph = pool_param['pool_height']
+    pw = pool_param['pool_width']
+    s = pool_param['stride']
+    H_out = 1 + (H - ph) // s
+    W_out = 1 + (W - pw) // s
+    dx = np.zeros_like(x)
+    for n in range(N):
+        for c in range(C):
+            for hout in range(H_out):
+                for wout in range(W_out):
+                    window = x[n, c, hout * s:hout * s + ph, wout * s:wout * s + pw]
+                    max_idx = np.unravel_index(np.argmax(window, axis=None), window.shape)
+                    dx[n, c, hout * s + max_idx[0], wout * s + max_idx[1]] = dout[n, c, hout, wout]
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ###########################################################################
