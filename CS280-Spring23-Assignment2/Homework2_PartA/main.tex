@@ -4,6 +4,7 @@
 \usepackage{comment}
 \usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.2cm, right=2.2cm]%
 {geometry}
+\usepackage{pdfpages}
 \usepackage{times}
 \usepackage{amsmath}
 \usepackage{changepage}
@@ -123,5 +124,9 @@
         \par The converse is false,
     \end{itemize}
 
-
+    \includepdf[pages=1-]{../out/FullyConnectedNets.pdf}
+    \includepdf[pages=1-]{../out/BatchNormalization.pdf}
+    \includepdf[pages=1-]{../out/Dropout.pdf}
+    \includepdf[pages=1-]{../out/ConvolutionalNetworks.pdf}
+    \includepdf[pages=1-]{../out/PyTorch.pdf}
 \end{document}
