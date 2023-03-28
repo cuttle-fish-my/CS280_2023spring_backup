@@ -121,7 +121,13 @@
         \item Is the converse true, i.e.,
         Can a convolution operation be decomposed into two smaller convolution operations?\\
         {\bf Solution:}
-        \par The converse is false,
+        \par The converse is false, because any convolution kernel can be decomposed into two smaller convolution kernels means
+        that the elements in the large kernel are constrained to be the sum of partial elements in the small kernels.
+        However, this limits the degree of freedom of large kernel.
+        For example, if we have two convolution kernels $kernel_1$ and $kernel_2$ with size $3\times 3$ and $5\times 5$ respectively,
+        then the kernel $kernel_3$ with size $7\times 7$ can be decomposed into two smaller kernels $kernel_1$ and $kernel_2$ (full-convolution).
+        However, the degree of freedom of $kernel_3$ is no longer $7\times 7 = 49$ but $3\times 3+5\times 5 = 34$, so the solution space is much smaller
+        and there must be at least one kernel that can not be decomposed into two smaller kernels.
     \end{itemize}
 
     \includepdf[pages=1-]{../out/FullyConnectedNets.pdf}
